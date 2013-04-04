@@ -26,12 +26,12 @@ public class HelloLucene {
 	public static void main(String[] args) throws IOException, ParseException {
 		// 0. Specify the analyzer for tokenizing text.
 		//    The same analyzer should be used for indexing and searching
-		StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_40);
+		StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_42);
 
 		// 1. create the index
 		Directory index = new RAMDirectory();
 
-		IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_40, analyzer);
+		IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_42, analyzer);
 
 		IndexWriter w = new IndexWriter(index, config);
 		addDoc(w, "Lucene in Action", "193398817");
@@ -47,7 +47,7 @@ public class HelloLucene {
 		// when no field is explicitly specified in the query.
 		Query q = null;
 		try {
-			q = new QueryParser(Version.LUCENE_40, "title", analyzer).parse(querystr);
+			q = new QueryParser(Version.LUCENE_42, "title", analyzer).parse(querystr);
 		} catch (org.apache.lucene.queryparser.classic.ParseException e) {
 			e.printStackTrace();
 		}
