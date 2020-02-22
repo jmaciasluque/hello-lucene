@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.macluq</groupId>
+  <groupId>me.juanmacias</groupId>
   <artifactId>HelloLucene</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>Hello Lucene</name>
   <description>Mavenized version of Kelvin Tan's example</description>
 
@@ -25,7 +25,7 @@
 	                      <arguments>
 	                          <argument>-classpath</argument>
 	                          <classpath />
-	                          <argument>HelloLucene.HelloLucene</argument>
+	                          <argument>me.juanmacias.HelloLucene</argument>
 	                      </arguments>
 	                  </configuration>
 	              </execution>
@@ -33,8 +33,6 @@
 	      </plugin>
 	  </plugins>
 	</build>
-
-
 
 	<dependencies>
 	  	<dependency>
@@ -45,22 +43,22 @@
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-queries</artifactId>
-			<version>4.0.0</version>
+			<version>7.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-test-framework</artifactId>
-			<version>4.0.0</version>
+			<version>7.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-analyzers-common</artifactId>
-			<version>4.0.0</version>
+			<version>7.1.0</version>
 		</dependency>
 	    <dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-queryparser</artifactId>
-			<version>4.0.0</version>
+			<version>7.1.0</version>
 		</dependency>
 	</dependencies>
 
