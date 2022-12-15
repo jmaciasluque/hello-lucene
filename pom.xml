@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-queries</artifactId>
-			<version>7.1.0</version>
+			<version>9.4.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
