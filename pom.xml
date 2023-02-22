@@ -7,6 +7,10 @@
 	<name>Hello Lucene</name>
 	<description>Mavenized version of Kelvin Tan's example</description>
 
+	<properties>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+	</properties>
 
 	<build>
 		<plugins>
