@@ -9,13 +9,13 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
+import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopScoreDocCollector;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
-import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.store.ByteBuffersDirectory;
 
 import java.io.IOException;
 
@@ -23,12 +23,11 @@ public class HelloLucene {
 
     public static void main(String[] args) throws IOException {
         // 0. Specify the analyzer for tokenizing text.
-        //    The same analyzer should be used for indexing and searching
+        // The same analyzer should be used for indexing and searching
         StandardAnalyzer analyzer = new StandardAnalyzer();
 
         // 1. create the index
-        Directory index = new RAMDirectory();
-
+        Directory index = new ByteBuffersDirectory();
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
 
         IndexWriter w = new IndexWriter(index, config);
@@ -45,8 +44,7 @@ public class HelloLucene {
         // when no field is explicitly specified in the query.
         Query query = null;
         try {
-            String[] fields = {"title"};
-            query = new MultiFieldQueryParser(fields, analyzer).parse(queryString);
+            query = new QueryParser("title", analyzer).parse(queryString);
         } catch (org.apache.lucene.queryparser.classic.ParseException e) {
             e.printStackTrace();
         }
@@ -55,9 +53,8 @@ public class HelloLucene {
         int hitsPerPage = 10;
         IndexReader reader = DirectoryReader.open(index);
         IndexSearcher searcher = new IndexSearcher(reader);
-        TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage);
-        searcher.search(query, collector);
-        ScoreDoc[] hits = collector.topDocs().scoreDocs;
+        TopDocs docs = searcher.search(query, hitsPerPage);
+        ScoreDoc[] hits = docs.scoreDocs;
 
         // 4. display results
         System.out.println("Found " + hits.length + " hits.");
